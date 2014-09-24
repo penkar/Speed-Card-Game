@@ -1,0 +1,16 @@
+a Arrays, each suit, 13 cards in each suit. 
+shuffle array for dealing. - http://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array-in-javascript
+Remove car drom array when dealt.
+
+Choose rules? double stack or only up and down. 
+Hash to change 13 to King, 1 to Ace
+
+CSS to setup cards, up cards and down
+2 : 4 : 2 setup. when the cards run out, cards should disappear.
+
+Program, mouse clicks for player one?
+program, button clicks a-g for 1-5 possibly, 1,2 for pile 1-2?
+
+Program computer player, setTimeout( ) - difficully determines how long set time out will run. 
+2 pages, one for comp, one for 2 players.
+
