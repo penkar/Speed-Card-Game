@@ -24,10 +24,14 @@ span{
 	border-color: black;
 }
 
+button, select{
+	width:100px;
+}
+
 .board{
 	width:880px;
-	border-color:white;
-
+	background:rgba(255,255,255,0.5);
+	margin-top: 20px;
 }
 
 .hand{
@@ -37,6 +41,9 @@ span{
 
 .deck{
 	margin:0px;
+	background-color: darkblue;
+	border-color: gray;
+	color:aqua;
 }
 
 .inplay{
@@ -52,20 +59,18 @@ span{
 	width: 100px;
 	padding: 5px;
 	margin:5px;
-	background-color: white;
-}
+	}
 
 body{
 	margin:0;
-	background-color: green;
-
+	background-image: url("table.jpg");
 }
 
 
 .center {
     margin-left: auto;
     margin-right: auto;
-    background-color: #b0e0e6;
+    background:rgba(255,255,255,0.5);
 }
 
 .clearfix:after{

@@ -25,7 +25,10 @@ $('.start').on('click', function(){
   $('.playLeft, .playRight').on('click', function() {
     playObject.playCard = $(this).attr('class').split(' ')[1];
     console.log(playObject);
+    console.log(playObject);
     $(document).trigger('playAttempt', playObject);
     resetPlayObject();
   })
 });
+
+
