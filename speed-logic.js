@@ -100,14 +100,19 @@ var makePlay = function(hand, cardIndex, playCard) {
 };
 
 var drawCard = function(hand) {
-  if (hand == lowerHand) {
-    hand.push(lowerDeck.splice(0, 1)[0]);
-  }
-  else if (hand == upperHand) {
-    hand.push(upperDeck.splice(0, 1)[0]);
+ if (hand.length < 5) {
+    if (hand == lowerHand && lowerDeck.length > 0) {
+      hand.push(lowerDeck.splice(0, 1)[0]);
+    }
+    else if (hand == upperHand && upperDeck.length > 0) {
+      hand.push(upperDeck.splice(0, 1)[0]);
+    }
+    else {
+      console.log("Invalid input.");
+    }
   }
   else {
-    console.log("Invalid input.");
+    console.log("Hand size at maximum.");
   }
 };
 
