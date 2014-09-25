@@ -5,7 +5,7 @@ var lowerDeck, upperDeck, drawLeft, drawRight, playLeft, playRight, lowerHand, u
 
 //IIFE that makes sure there is a fresh deck when the page loads. This also sets all other play variables to null.
 //Card values being at Ace being 1, and continue to to D on a base-14 scale. A = 10, B = Jack, C = Queen, D = King.
-var resetDeck = (function () {
+var resetDeck = function () {
   mainDeck = [
   '1 C', '2 C', '3 C', '4 C', '5 C', '6 C', '7 C', '8 C', '9 C', 'A C', 'B C', 'C C', 'D C',
   '1 D', '2 D', '3 D', '4 D', '5 D', '6 D', '7 D', '8 D', '9 D', 'A D', 'B D', 'C D', 'D D',
@@ -27,11 +27,33 @@ var resetDeck = (function () {
 
   playLeft = null;
   playRight = null;
-})();
+};
+
+resetDeck();
+
+$(document).on('resetGame', function() {
+  resetDeck();
+  shuffleDeck();
+  console.log('Deck reset, cards shuffled. Ready to deal.');
+})
+
+$(document).on('newGame', function() {
+  dealCards();
+  console.log('Go!');
+})
 
 $(document).on('playAttempt', function (e, playObject) {
-  attemptPlay(playObject.hand, playObject.cardIndex, playObject.playCard);
+  attemptPlay(window[playObject.hand], playObject.cardIndex, window[playObject.playCard]);
 });
+
+$(document).on('lowerDraw', function () {
+  drawCard(lowerHand);
+});
+
+$(document).on('noMoves', function () {
+  drawLeftAndRight();
+})
+
 
 //Randomly arranges the values in mainDeck to simulate shuffling. Even if this method is called during play, the mainDeck will be empty and it should not affect any other deck.
 var shuffleDeck = function() {
@@ -135,6 +157,13 @@ var drawCard = function(hand) {
   }
 };
 
+var drawLeftAndRight = function () {
+  if (drawLeft.length > 0) {
+    playLeft.splice(0, 1, drawLeft.splice(0, 1)[0]);
+    playRight.splice(0, 1, drawRight.splice(0, 1)[0]);
+  }
+};
+
 var stats = function() {
     console.log(mainDeck);
     console.log(upperDeck);
@@ -147,6 +176,3 @@ var stats = function() {
     console.log(drawRight);
 };
 
-$(document).on('newGame', function() {
-  dealCards;
-})

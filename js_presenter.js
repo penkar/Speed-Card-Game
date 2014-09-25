@@ -12,23 +12,38 @@ var resetPlayObject = function() {
   }
 }
 
-$('.start').on('click', function(){
+$('#reset').on('click', function() {
+  $(document).trigger('resetGame');
+});
+
+$('#start').on('click', function(){
   $(document).trigger('newGame');
 
   $('.red').not('.lowerDeck').on('click', function() {
-    playObject.hand = lowerHand;
+    playObject.hand = 'lowerHand';
     var card = $(this).attr('class');
-    playObject.cardIndex = card.slice(-1);
+    playObject.cardIndex = parseInt(card.slice(-1));
     console.log(playObject);
   });
 
   $('.playLeft, .playRight').on('click', function() {
     playObject.playCard = $(this).attr('class').split(' ')[1];
     console.log(playObject);
-    console.log(playObject);
     $(document).trigger('playAttempt', playObject);
     resetPlayObject();
+  });
+
+  $('.lowerDeck').on('click', function() {
+    console.log('Lower Draw');
+    $(document).trigger('lowerDraw');
+  });
+
+  $('.drawRight').on('click', function() {
+    console.log('New play cards.');
+    $(document).trigger('noMoves');
   })
 });
+
+
 
 
