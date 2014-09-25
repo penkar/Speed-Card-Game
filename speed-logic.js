@@ -29,6 +29,10 @@ var resetDeck = (function () {
   playRight = null;
 })();
 
+$(document).on('playAttempt', function (e, playObject) {
+  attemptPlay(playObject.hand, playObject.cardIndex, playObject.playCard);
+});
+
 //Randomly arranges the values in mainDeck to simulate shuffling. Even if this method is called during play, the mainDeck will be empty and it should not affect any other deck.
 var shuffleDeck = function() {
   for (var j, x, i = mainDeck.length; i; j = Math.floor(Math.random() * i), x = mainDeck[--i], mainDeck[i] = mainDeck[j], mainDeck[j] = x);
@@ -58,7 +62,7 @@ var dealCards = function() {
 //be played on Aces or Queens; and the else clause establishes that all other cards can be played on values either one
 //value higher or one value lower than itself. The makePlay method is called when the move is legal, and that method
 //takes the same arguments given to attemptMove.
-var attemptMove = function(hand, cardIndex, playCard) {
+var attemptPlay = function(hand, cardIndex, playCard) {
   attemptCard = parseInt(hand[cardIndex], 14);
   compareCard = parseInt(playCard[0], 14);
 
