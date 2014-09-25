@@ -133,6 +133,7 @@ var attemptPlay = function(hand, cardIndex, playCard) {
 //removes the value from the playCard (center card being played on) and replaces it with the value of the player's card.
 //The card is then removed from the player's hand.
 var makePlay = function(hand, cardIndex, playCard) {
+  console.log(hand,cardIndex,playCard)
   playCard.splice(0, 1, hand[cardIndex]);
   hand.splice(cardIndex, 1);
 };
