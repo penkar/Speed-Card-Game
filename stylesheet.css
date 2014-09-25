@@ -12,6 +12,8 @@ span{
 	display: block;
 }
 
+
+
 .red{
 	border-style: solid;
 	border-color: red;
@@ -23,35 +25,47 @@ span{
 }
 
 .board{
-	width:770px;
+	width:900px;
 	border-color:white;
+
 }
 
 .hand{
-	width:570px;
-	height:185px;
+	width:650px;
+	margin: 0px 110px 0px 110px;
 }
 
-.card-deck{
-	width:185px;
-	height:110px;
+.deck{
+	margin:0px;
 }
 
 .inplay{
-
+	margin-right: auto;
+	margin-left: auto;
+	height: 185px;
 }
 
-div{
-	margin:0;
-
+.infobox{
+	float:left;
+	height:175px;
+	width: 100px;
+	padding: 5px;
+	margin:5px;
+	background-color: white;
 }
 
 body{
 	margin:0;
-	background-color: green
+	background-color: green;
+	
 }
 
 
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #b0e0e6;
+}
 
 .clearfix:after{
   content: "";
