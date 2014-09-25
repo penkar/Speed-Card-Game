@@ -12,7 +12,7 @@
 		<span class="row clearfix">
 
 			<span class="deck">
-				<div class="black card upperDeck">Deck</div>
+				<div class="black card upperDeck deck">Deck</div>
 			</span>
 
 			<span class="hand">
@@ -28,16 +28,38 @@
 
 
 		<span class="row clearfix">
+			<div class="infobox">
+				<button type="button" id="start">Start Game</button>
+				<button type="button" id="reset">Reset Game</button>
+
+				<select name="Difficulty">
+				<option value="1">1 Easy</option>
+				<option value="2">2 Beginner</option>
+				<option value="3">3 Medium</option>
+				<option value="4">4 Hard</option>
+				<option value="5">5 Advanced</option>
+				</select>
+
+				<a href>Leaderboard</a>
+			</div>
+
 			<div class="inplay">
 				<span class="deck">
-					<div class=" card drawLeft">Draw</div>
+					<div class=" card drawLeft deck">Draw</div>
 				</span>
 					<div class="card playLeft">Play</div>
 					<div class="card playRight">Play</div>
 				<span class="deck">
-					<div class="card drawRight">Draw</div>
+					<div class="card drawRight deck">Draw</div>
 				</span>
 			</div>
+
+			<div class="infobox">
+				<p>Player 2 has <span>{{upperDeck.length}}</span> cards left.</p>
+				<p>Player 1 has <span>{{lowerDeck.length}}</span> cards left.</p>
+			</div>
+
+
 		</span>
 
 
@@ -54,7 +76,7 @@
 			</span>
 
 			<span class="deck">
-				<div class="red card lowerDeck">Deck</div>
+				<div class="red card lowerDeck deck">Deck</div>
 			</span>
 		</span>
 	</span>
