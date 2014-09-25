@@ -5,6 +5,8 @@
  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
     <link rel="stylesheet" href="stylesheet.css"></link>
     <script src="speed-logic.js"></script>
+    <script src="computer_opponent.js"></script>
+    <script src="js_presenter.js"></script>        
 </head>
 <body>
 	<span class="board center">
@@ -16,11 +18,11 @@
 			</span>
 
 			<span class="hand">
+				<div class="black card u0">Ace</div>
 				<div class="black card u1">Ace</div>
 				<div class="black card u2">Ace</div>
 				<div class="black card u3">Ace</div>
 				<div class="black card u4">Ace</div>
-				<div class="black card u5">Ace</div>
 			</span>
 
 			<div id="p2" class="infobox"><h6>The computer has played a 3.</h6></div>
@@ -68,11 +70,11 @@
 			<div id="p1" class="infobox"><h6>The computer has played an Ace.</h6></div>
 
 			<span class="hand">
+				<div class="red card l0">Ace</div>
 				<div class="red card l1">Ace</div>
 				<div class="red card l2">Ace</div>
 				<div class="red card l3">Ace</div>
 				<div class="red card l4">Ace</div>
-				<div class="red card l5">Ace</div>
 			</span>
 
 			<span class="deck">
