@@ -14,6 +14,7 @@ var resetPlayObject = function() {
 
 $('#reset').on('click', function() {
   $(document).trigger('resetGame');
+  $('.red, .playLeft, .playRight, .lowerDeck, .drawRight').off();
 });
 
 $('#start').on('click', function(){
@@ -38,12 +39,15 @@ $('#start').on('click', function(){
     $(document).trigger('lowerDraw');
   });
 
+
+});
+
+$(document).on('outOfMoves', function() {
   $('.drawRight').on('click', function() {
     console.log('New play cards.');
     $(document).trigger('noMoves');
-  })
-});
-
+  });
+};
 
 
 

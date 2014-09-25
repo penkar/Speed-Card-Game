@@ -39,11 +39,15 @@ $(document).on('resetGame', function() {
 
 $(document).on('newGame', function() {
   dealCards();
+  updateCounters();
+  $('.lowerDeck').text(lowerCounter);
+  $('.upperDeck').text(upperCounter);
   console.log('Go!');
 })
 
 $(document).on('playAttempt', function (e, playObject) {
   attemptPlay(window[playObject.hand], playObject.cardIndex, window[playObject.playCard]);
+
 });
 
 $(document).on('lowerDraw', function () {
@@ -52,6 +56,12 @@ $(document).on('lowerDraw', function () {
 
 $(document).on('noMoves', function () {
   drawLeftAndRight();
+})
+
+$(document).on('playMade', function() {
+  updateCounters();
+  $('.lowerDeck').text(lowerCounter);
+  $('.upperDeck').text(upperCounter);
 })
 
 
@@ -136,6 +146,7 @@ var makePlay = function(hand, cardIndex, playCard) {
   console.log(hand,cardIndex,playCard)
   playCard.splice(0, 1, hand[cardIndex]);
   hand.splice(cardIndex, 1);
+  $(document).trigger('playMade');
 };
 
 //This function checks that the player's hand has fewer than five cards in it. If so, it then checks which hand is attempting
@@ -163,6 +174,12 @@ var drawLeftAndRight = function () {
     playLeft.splice(0, 1, drawLeft.splice(0, 1)[0]);
     playRight.splice(0, 1, drawRight.splice(0, 1)[0]);
   }
+  updateCouners();
+};
+
+var updateCounters = function() {
+  upperCounter = upperHand.length + upperDeck.length;
+  lowerCounter = lowerHand.length + lowerDeck.length;
 };
 
 var stats = function() {
