@@ -197,3 +197,28 @@ var stats = function() {
     console.log(drawRight);
 };
 
+var translate = function(card){
+  f = card[0];
+  l = card[2];
+    if(f===1){
+      f = 'Ace'
+    } else if (f === 'A'){
+      f = "10"
+    } else if (f === 'B'){
+      f = "Jack"
+    } else if (f === 'C'){
+      f = "Queen"
+    } else if (f === 'B'){
+      f = "King"
+    }
+    if(l==='D'){
+      l = 'Diamonds'
+    } else if(l === 'C'){
+      l = 'Clubs'
+    } else if(l === 'H'){
+      l = 'Hearts'
+    } else if(l === 'S'){
+      l = "Spades"
+    }
+    console.log( f+' '+l)
+}
