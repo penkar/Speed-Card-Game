@@ -1,3 +1,8 @@
+1 Array, 42 elements with 1-13 number and a suit indicator. 
+	Possibly run it through a hash to parse the card number and suit class.
+	
+
+
 a Arrays, each suit, 13 cards in each suit. 
 shuffle array for dealing. - http://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array-in-javascript
 Remove car drom array when dealt.
@@ -14,3 +19,12 @@ program, button clicks a-g for 1-5 possibly, 1,2 for pile 1-2?
 Program computer player, setTimeout( ) - difficully determines how long set time out will run. 
 2 pages, one for comp, one for 2 players.
 
+*leaderboard - would require a psql datbase to track. 
+
+
+1 Game Logic/ Rule Set
+2 Game Board-Cards Creation
+ Beginning options (1p, 2p, stack/nonstack)
+ Angular - Transitions animations
+ Database/ Leaderboards
+ Authentication
