@@ -1,7 +1,7 @@
 var mainDeck, upperCounter, lowerCounter;
-
-//the following are referred to herein as the 'play variables' since they are the ones we will be using to play the game.
 var lowerDeck, upperDeck, drawLeft, drawRight, playLeft, playRight, lowerHand, upperHand, stats;
+var drawInd = false
+//the following are referred to herein as the 'play variables' since they are the ones we will be using to play the game.
 
 //IIFE that makes sure there is a fresh deck when the page loads. This also sets all other play variables to null.
 //Card values being at Ace being 1, and continue to to D on a base-14 scale. A = 10, B = Jack, C = Queen, D = King.
@@ -170,11 +170,14 @@ var drawCard = function(hand) {
 };
 
 var drawLeftAndRight = function () {
-  if (drawLeft.length > 0) {
-    playLeft.splice(0, 1, drawLeft.splice(0, 1)[0]);
-    playRight.splice(0, 1, drawRight.splice(0, 1)[0]);
-  }
-  updateCouners();
+  if(drawInd){
+    if (drawLeft.length > 0) {
+      playLeft.splice(0, 1, drawLeft.splice(0, 1)[0]);
+      playRight.splice(0, 1, drawRight.splice(0, 1)[0]);
+    }
+    drawInd=false;
+    updateCounters();
+  };
 };
 
 var updateCounters = function() {

@@ -38,16 +38,14 @@ $('#start').on('click', function(){
     console.log('Lower Draw');
     $(document).trigger('lowerDraw');
   });
-
-
 });
 
-$(document).on('outOfMoves', function() {
+// $(document).on('outOfMoves', function() {
   $('.drawRight').on('click', function() {
     console.log('New play cards.');
     $(document).trigger('noMoves');
-  });
-};
+  // });
+});
 
 
 
