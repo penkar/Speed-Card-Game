@@ -28,3 +28,64 @@ Program computer player, setTimeout( ) - difficully determines how long set time
  Angular - Transitions animations
  Database/ Leaderboards
  Authentication
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var compMove = function(active){
+	var active = true;
+		// setTimeout(function(){
+
+		while(active){
+
+			active = false;
+		var count = upperHand.length;
+
+			for(var i = 0; i < upperHand.length; i++){
+				
+				// (function(j){
+				// setTimeout(function(){console.log(upperHand,j,playRight)},2000*(1+j));
+				// setTimeout(function(){console.log(upperHand,j,playLeft)},2000*(1+j));
+				// setTimeout(function(){attemptPlay(upperHand,j,playLeft)},2000*(1+j))
+				// setTimeout(function(){attemptPlay(upperHand,j,playRight)},2000*(1+j));
+				
+				(function(j){
+				setTimeout(function(){
+					attemptPlay(upperHand,j,playRight);
+					attemptPlay(upperHand,j,playLeft);
+
+					if (upperHand.length !== 5 || upperDeck.length===0){
+						active = true;
+						do{drawCard(upperHand); count = upperHand.length;}
+							while(upperHand.count<5 && upperDeck.length===0);
+					}
+					
+				},2000*(1+j));
+				})(i);
+
+				// })(i);
+				// attemptPlay(upperHand,i,playLeft);
+				// attemptPlay(upperHand,i,playRight);
+			} 
+			
+			// if (upperHand.length !== 5 || upperDeck.length===0){
+			// 	active = true;
+			// 	do{drawCard(upperHand); count = upperHand.length;}
+			// 		while(upperHand.count<5 && upperDeck.length===0);
+			// }
+		}
+
+	// },2000);
+	setWin();
+ 
