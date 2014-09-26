@@ -13,8 +13,14 @@ var resetPlayObject = function() {
 }
 
 $('#reset').on('click', function() {
+  console.log('hello')
   $(document).trigger('resetGame');
   $('.red, .playLeft, .playRight, .lowerDeck, .drawRight').off();
+});
+
+$('.drawRight').on('click', function() {
+  console.log('New play cards.');
+  $(document).trigger('noMoves');
 });
 
 $('#start').on('click', function(){
@@ -38,16 +44,8 @@ $('#start').on('click', function(){
     console.log('Lower Draw');
     $(document).trigger('lowerDraw');
   });
-
-
 });
 
-$(document).on('outOfMoves', function() {
-  $('.drawRight').on('click', function() {
-    console.log('New play cards.');
-    $(document).trigger('noMoves');
-  });
-});
 
 
 

@@ -44,14 +44,14 @@ var compMove = function(){
 				},difficulty*(1+j));
 			})(i);
 		};
-	$(document).trigger('outOfMoves');
 	})();
+	setTimeout(drawInd = true,8000);
 	setWin();
 }
 // Paramaters to trigger a win for the computer.
 var setWin= function(){
 	if (upperHand.length === 0 && upperDeck.length === 0){
 		console.log('The Computer has beaten you.');
-	}
 	return true;
+	}
 }

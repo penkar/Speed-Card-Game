@@ -1,7 +1,7 @@
 var mainDeck, upperCounter, lowerCounter;
-
-//the following are referred to herein as the 'play variables' since they are the ones we will be using to play the game.
 var lowerDeck, upperDeck, drawLeft, drawRight, playLeft, playRight, lowerHand, upperHand, stats;
+var drawInd = false
+//the following are referred to herein as the 'play variables' since they are the ones we will be using to play the game.
 
 //IIFE that makes sure there is a fresh deck when the page loads. This also sets all other play variables to null.
 //Card values being at Ace being 1, and continue to to D on a base-14 scale. A = 10, B = Jack, C = Queen, D = King.
@@ -58,13 +58,14 @@ $(document).on('lowerDraw', function () {
 
 $(document).on('noMoves', function () {
   drawLeftAndRight();
-  $('.drawRight').off();
 })
 
 $(document).on('playMade', function() {
   updateCounters();
   $('.lowerDeck').text(lowerCounter);
   $('.upperDeck').text(upperCounter);
+  showCard()
+  console.log('hello')
 })
 
 
@@ -88,6 +89,7 @@ var dealCards = function() {
   drawRight = mainDeck.splice(0, 5);
   upperCounter = upperDeck.length + upperHand.length;
   lowerCounter = lowerDeck.length + lowerHand.length;
+  showCard()
 };
 
 //Takes 3 arguments: the variable name of the hand being playing from (upperHand/lowerHand),
@@ -170,14 +172,20 @@ var drawCard = function(hand) {
   else {
     console.log("Hand size at maximum.");
   }
+      updateCounters();/////////////////////////////////////////////////////////////////////
+
 };
 
 var drawLeftAndRight = function () {
-  if (drawLeft.length > 0) {
-    playLeft.splice(0, 1, drawLeft.splice(0, 1)[0]);
-    playRight.splice(0, 1, drawRight.splice(0, 1)[0]);
-  }
-  updateCounters();
+  if(drawInd){
+    updateCounters();
+    if (drawLeft.length > 0) {
+      playLeft.splice(0, 1, drawLeft.splice(0, 1)[0]);
+      playRight.splice(0, 1, drawRight.splice(0, 1)[0]);
+    }
+    drawInd=false;
+    updateCounters();
+  };
 };
 
 var updateCounters = function() {
@@ -197,3 +205,50 @@ var stats = function() {
     console.log(drawRight);
 };
 
+var translate = function(card){
+  f = card[0];
+  l = card[2];
+    if(f===1){
+      f = 'Ace'
+    } else if (f === 'A'){
+      f = "10"
+    } else if (f === 'B'){
+      f = "Jack"
+    } else if (f === 'C'){
+      f = "Queen"
+    } else if (f === 'D'){
+      f = "King"
+    }
+    if(l==='D'){
+      l = 'Diamonds'
+    } else if(l === 'C'){
+      l = 'Clubs'
+    } else if(l === 'H'){
+      l = 'Hearts'
+    } else if(l === 'S'){
+      l = "Spades"
+    }
+    return (f+' '+l)
+}
+
+// var a = function(){for(var i = 0; i < 5; i++){$('.uhand div:nth-child(' + i + ')').text('Hello')}}
+// updateHandNames(upperHand,uhand)
+
+var updateHandNames = function(hand,handClass){
+  console.log(hand,handClass)
+  var handArray = [];
+  for(var i = 0; i < hand.length; i++){
+    handArray.push(translate(hand[i]));
+  }
+  handArray;
+  for(var j = 0; j < hand.length; j++){
+      var k = j+1
+      $('.'+handClass+' div:nth-child( '+k+')').contents().remove();
+      $('.'+handClass+' div:nth-child( '+k+')').text(handArray[j]);
+  }
+}
+var showCard=function(){
+  updateHandNames(upperHand,'uhand');
+  updateHandNames(lowerHand,'dhand');
+  updateHandNames([playLeft[0],playRight[0]],'onField');
+}
