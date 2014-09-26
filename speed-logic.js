@@ -54,18 +54,20 @@ $(document).on('playAttempt', function (e, playObject) {
 
 $(document).on('lowerDraw', function () {
   drawCard(lowerHand);
+  showCard();
 });
 
 $(document).on('noMoves', function () {
   drawLeftAndRight();
+  showCard();
 })
 
 $(document).on('playMade', function() {
   updateCounters();
   $('.lowerDeck').text(lowerCounter);
   $('.upperDeck').text(upperCounter);
-  showCard()
-  console.log('hello')
+  showCard();
+  console.log('play made');
 })
 
 
@@ -172,6 +174,7 @@ var drawCard = function(hand) {
   else {
     console.log("Hand size at maximum.");
   }
+  showCard();
       updateCounters();/////////////////////////////////////////////////////////////////////
 
 };

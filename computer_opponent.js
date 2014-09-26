@@ -1,5 +1,6 @@
-var compDraw = false
-var difficulty = null
+var compDraw = false;
+var stopCommand = false;
+var difficulty = null;
 $(document).on('noMoves', function(){compMove()});
 $(document).on('newGame', function (e, obj){
 	switch (obj) {
@@ -26,12 +27,21 @@ $(document).on('newGame', function (e, obj){
 
 });
 
-
-// Create for loop that computer opponent will run through in order to play game. Each card will be played agains the left and right play card. Afterwards a draw card will trigger.
+$(document).on('playMade', function() {
+	console.log('received');
+	stopCommand = true;
+	compMove();
+})
+// Create for loop that computer opponent will run ,through in order to play game. Each card will be played agains the left and right play card. Afterwards a draw card will trigger.
 var compMove = function(){
 	(function(){
 		var count = upperHand.length;
 			for(var i = 0; i < count; i++){
+				if (stopCommand) {
+					stopCommand = false;
+					compMove();
+					break;
+				}
 				(function(j){
 					setTimeout(function(){
 						attemptPlay(upperHand,j,playRight);
@@ -46,6 +56,7 @@ var compMove = function(){
 		};
 	})();
 	setTimeout(drawInd = true,8000);
+	stopCommand = true;
 	setWin();
 }
 // Paramaters to trigger a win for the computer.
