@@ -18,7 +18,7 @@ $('#reset').on('click', function() {
 });
 
 $('#start').on('click', function(){
-  $(document).trigger('newGame');
+  $(document).trigger('newGame', $('select option:selected').text());
 
   $('.red').not('.lowerDeck').on('click', function() {
     playObject.hand = 'lowerHand';
@@ -47,7 +47,7 @@ $(document).on('outOfMoves', function() {
     console.log('New play cards.');
     $(document).trigger('noMoves');
   });
-};
+});
 
 
 

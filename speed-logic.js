@@ -34,6 +34,8 @@ resetDeck();
 $(document).on('resetGame', function() {
   resetDeck();
   shuffleDeck();
+  $('.lowerDeck').text(lowerCounter);
+  $('.upperDeck').text(upperCounter);
   console.log('Deck reset, cards shuffled. Ready to deal.');
 })
 
@@ -56,6 +58,7 @@ $(document).on('lowerDraw', function () {
 
 $(document).on('noMoves', function () {
   drawLeftAndRight();
+  $('.drawRight').off();
 })
 
 $(document).on('playMade', function() {
@@ -174,7 +177,7 @@ var drawLeftAndRight = function () {
     playLeft.splice(0, 1, drawLeft.splice(0, 1)[0]);
     playRight.splice(0, 1, drawRight.splice(0, 1)[0]);
   }
-  updateCouners();
+  updateCounters();
 };
 
 var updateCounters = function() {
