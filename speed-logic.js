@@ -65,6 +65,9 @@ $(document).on('playMade', function() {
   updateCounters();
   $('.lowerDeck').text(lowerCounter);
   $('.upperDeck').text(upperCounter);
+  showCard()
+  // updateHandNames()
+
 })
 
 
@@ -88,6 +91,7 @@ var dealCards = function() {
   drawRight = mainDeck.splice(0, 5);
   upperCounter = upperDeck.length + upperHand.length;
   lowerCounter = lowerDeck.length + lowerHand.length;
+  showCard()
 };
 
 //Takes 3 arguments: the variable name of the hand being playing from (upperHand/lowerHand),
@@ -239,4 +243,9 @@ var updateHandNames = function(hand,handClass){
       var k = j+1
       $('.'+handClass+' div:nth-child( '+k+')').text(handArray[j]);
   }
+}
+var showCard=function(){
+  updateHandNames(upperHand,'uhand');
+  updateHandNames(lowerHand,'dhand');
+  updateHandNames([playLeft,playRight],'onField');
 }
