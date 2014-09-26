@@ -34,6 +34,8 @@ resetDeck();
 
 $(document).on('resetGame', function() {
   resetDeck();
+  updateCounters();
+  shuffleDeck();
   shuffleDeck();
   $('.lowerDeck').text(lowerCounter);
   $('.upperDeck').text(upperCounter);
@@ -41,6 +43,8 @@ $(document).on('resetGame', function() {
 })
 
 $(document).on('newGame', function() {
+  shuffleDeck();
+  shuffleDeck();
   dealCards();
   updateCounters();
   $('.lowerDeck').text(lowerCounter);
@@ -59,8 +63,10 @@ $(document).on('lowerDraw', function () {
 });
 
 $(document).on('noMoves', function () {
+  drawInd = true;
   drawLeftAndRight();
   showCard();
+  drawInd = false;
 })
 
 $(document).on('playMade', function() {
@@ -77,6 +83,17 @@ var shuffleDeck = function() {
   for (var j, x, i = mainDeck.length; i; j = Math.floor(Math.random() * i), x = mainDeck[--i], mainDeck[i] = mainDeck[j], mainDeck[j] = x);
   return mainDeck;
 };
+
+// function shuffleDeck (array, random) {
+//   var i = mainDeck.length, j, swap;
+//   while (--i) {
+//     j = (random ? random() : Math.random()) * (i + 1) | 0;
+//     swap = mainDeck[i];
+//     mainDeck[i] = mainDeck[j];
+//     mainDeck[j] = swap;
+//   }
+//   return mainDeck;
+// }
 
 //First, it calls the shuffleDeck function to make sure that the cards are not dealt out in sequential order.
 //It then deals out cards by removing them from the mainDeck and placing them into the play variables.
@@ -176,7 +193,7 @@ var drawCard = function(hand) {
     console.log("Hand size at maximum.");
   }
   showCard();
-      updateCounters();/////////////////////////////////////////////////////////////////////
+  updateCounters();/////////////////////////////////////////////////////////////////////
 
 };
 
@@ -212,25 +229,25 @@ var stats = function() {
 var translate = function(card){
   f = card[0];
   l = card[2];
-    if(f===1){
-      f = 'Ace'
+    if(f==='1'){
+      f = 'A'
     } else if (f === 'A'){
       f = "10"
     } else if (f === 'B'){
-      f = "Jack"
+      f = "J"
     } else if (f === 'C'){
-      f = "Queen"
+      f = "Q"
     } else if (f === 'D'){
-      f = "King"
+      f = "K"
     }
     if(l==='D'){
-      l = 'Diamonds'
+      l = '&diams;'
     } else if(l === 'C'){
-      l = 'Clubs'
+      l = '&clubs;'
     } else if(l === 'H'){
-      l = 'Hearts'
+      l = '&hearts;'
     } else if(l === 'S'){
-      l = "Spades"
+      l = '&spades;'
     }
     return (f+' '+l)
 }
@@ -248,7 +265,7 @@ var updateHandNames = function(hand,handClass){
   for(var j = 0; j < 5; j++){
       var k = j+1
       $('.'+handClass+' div:nth-child( '+k+')').contents().remove();
-      $('.'+handClass+' div:nth-child( '+k+')').text(handArray[j]);
+      $('.'+handClass+' div:nth-child( '+k+')').html(handArray[j]);
   }
 }
 

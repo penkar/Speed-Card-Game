@@ -15,14 +15,14 @@
 			</span>
 
 			<span class="hand uhand">
-				<div class="black card u0">Ace</div>
-				<div class="black card u1">Ace</div>
-				<div class="black card u2">Ace</div>
-				<div class="black card u3">Ace</div>
-				<div class="black card u4">Ace</div>
+				<div class="black card u0"></div>
+				<div class="black card u1"></div>
+				<div class="black card u2"></div>
+				<div class="black card u3"></div>
+				<div class="black card u4"></div>
 			</span>
 
-			<div id="p2" class="infobox"><h6>The computer has played a 3.</h6></div>
+			<div id="p2" class="infobox"><h6></h6></div>
 		</span>
 
 
@@ -32,11 +32,12 @@
 				<button type="button" id="reset">Reset Game</button>
 
 				<select name="Difficulty">
-				<option value="1">1 Easy</option>
-				<option value="2">2 Beginner</option>
-				<option value="3">3 Medium</option>
-				<option value="4">4 Hard</option>
-				<option value="5">5 Advanced</option>
+				<option value="1">CPU Easy</option>
+				<option value="2">CPU Beginner</option>
+				<option value="3">CPU Medium</option>
+				<option value="4">CPU Hard</option>
+				<option value="5">CPU Advanced</option>
+				<option value="6">2 Players</option>
 				</select>
 
 				<a href>Leaderboard</a>
@@ -56,8 +57,7 @@
 			</div>
 
 			<div class="infobox">
-				<p>Player 2 has <span>{{upperDeck.length}}</span> cards left.</p>
-				<p>Player 1 has <span>{{lowerDeck.length}}</span> cards left.</p>
+
 			</div>
 
 
@@ -66,14 +66,14 @@
 
 		<span class="row clearfix">
 
-			<div id="p1" class="infobox"><h6>The computer has played an Ace.</h6></div>
+			<div id="p1" class="infobox"><h6></h6></div>
 
 			<span class="hand dhand">
-				<div class="red card l0">Ace</div>
-				<div class="red card l1">Ace</div>
-				<div class="red card l2">Ace</div>
-				<div class="red card l3">Ace</div>
-				<div class="red card l4">Ace</div>
+				<div class="red card l0"></div>
+				<div class="red card l1"></div>
+				<div class="red card l2"></div>
+				<div class="red card l3"></div>
+				<div class="red card l4"></div>
 			</span>
 
 			<span class="deck">
@@ -85,5 +85,6 @@
     <script src="speed-logic.js"></script>
     <script src="computer_opponent.js"></script>
     <script src="js_presenter.js"></script>
+    <script src="player_2.js"></script>
 </body>
 </html>
