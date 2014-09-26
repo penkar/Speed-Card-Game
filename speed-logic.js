@@ -58,7 +58,6 @@ $(document).on('lowerDraw', function () {
 
 $(document).on('noMoves', function () {
   drawLeftAndRight();
-  $('.drawRight').off();
 })
 
 $(document).on('playMade', function() {
@@ -234,6 +233,7 @@ var translate = function(card){
 // updateHandNames(upperHand,uhand)
 
 var updateHandNames = function(hand,handClass){
+  console.log(hand,handClass)
   var handArray = [];
   for(var i = 0; i < hand.length; i++){
     handArray.push(translate(hand[i]));
@@ -241,6 +241,7 @@ var updateHandNames = function(hand,handClass){
   handArray;
   for(var j = 0; j < hand.length; j++){
       var k = j+1
+      $('.'+handClass+' div:nth-child( '+k+')').contents().remove();
       $('.'+handClass+' div:nth-child( '+k+')').text(handArray[j]);
   }
 }
