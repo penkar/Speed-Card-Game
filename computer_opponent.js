@@ -92,10 +92,10 @@ var compMove = function(){
 				},difficulty*(1+j));
 			})(i);
 		};
+	setWin();
 	})();
 	setTimeout(drawInd = true,8000);
 	stopCommand = true;
-	setWin();
 }
 // Paramaters to trigger a win for the computer.
 // var setWin= function(){

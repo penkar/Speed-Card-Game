@@ -26,11 +26,26 @@ $('.drawRight').on('click', function() {
 $('#start').on('click', function(){
   $(document).trigger('newGame', $('select option:selected').text());
 
-  $('.red').not('.lowerDeck').on('click', function() {
+  $('.red').not('.lowerDeck').on('click', function(e) {
+    e.preventDefault();
     playObject.hand = 'lowerHand';
     var card = $(this).attr('class');
     playObject.cardIndex = parseInt(card.slice(-1));
+    playObject.playCard = 'playLeft'
     console.log(playObject);
+    $(document).trigger('playAttempt', playObject);
+    resetPlayObject();
+  });
+
+  $('.red').not('.lowerDeck').on('contextmenu', function (e) {
+    e.preventDefault();
+    playObject.hand = 'lowerHand';
+    var card = $(this).attr('class');
+    playObject.cardIndex = parseInt(card.slice(-1));
+    playObject.playCard = 'playRight'
+    console.log(playObject);
+    $(document).trigger('playAttempt', playObject);
+    resetPlayObject();
   });
 
   $('.playLeft, .playRight').on('click', function() {

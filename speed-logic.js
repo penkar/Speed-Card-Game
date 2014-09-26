@@ -1,5 +1,7 @@
 var mainDeck, upperCounter, lowerCounter;
 var lowerDeck, upperDeck, drawLeft, drawRight, playLeft, playRight, lowerHand, upperHand, stats;
+var start, end, elapsed;
+var name;
 var drawInd = false;
 var gameOver = false;
 //the following are referred to herein as the 'play variables' since they are the ones we will be using to play the game.
@@ -36,15 +38,13 @@ $(document).on('resetGame', function() {
   resetDeck();
   updateCounters();
   shuffleDeck();
-  shuffleDeck();
   $('.lowerDeck').text(lowerCounter);
   $('.upperDeck').text(upperCounter);
   console.log('Deck reset, cards shuffled. Ready to deal.');
 })
 
 $(document).on('newGame', function() {
-  shuffleDeck();
-  shuffleDeck();
+  start = Date.now();
   dealCards();
   updateCounters();
   $('.lowerDeck').text(lowerCounter);
@@ -75,6 +75,7 @@ $(document).on('playMade', function() {
   $('.lowerDeck').text(lowerCounter);
   $('.upperDeck').text(upperCounter);
   console.log('play made');
+  setWin();
 })
 
 
@@ -200,7 +201,17 @@ var drawCard = function(hand) {
 var drawLeftAndRight = function () {
   if(drawInd){
     updateCounters();
-    if (drawLeft.length > 0) {
+    if (drawLeft === 0) {
+      if (upperCounter > lowerCounter) {
+        alert("Stalemate. Upper Hand wins by default.");
+        alert("...losers.");
+      }
+      else if (lowerCounter > upperCouter) {
+        alert("Stalemate. Player 1 wins by default.");
+        alert("But you both suck.");
+      }
+    }
+    else if (drawLeft.length > 0) {
       playLeft.splice(0, 1, drawLeft.splice(0, 1)[0]);
       playRight.splice(0, 1, drawRight.splice(0, 1)[0]);
     }
@@ -277,11 +288,15 @@ var showCard=function(){
 
 var setWin= function(){
   if (upperHand.length === 0 && upperDeck.length === 0){
-    alert('The Computer has beaten you.');
+    end = Date.now();
+    elapsed = (end - start)/1000;
+    name = prompt('Player Two has the Upper Hand.\nWinning time: '+elapsed+' seconds.\nEnter name for scoreboard:');
     gameOver=true;
     return true;
   } else if (lowerHand.length === 0 && lowerDeck.length === 0){
-    alert('You are victorious.');
+    end = Date.now();
+    elapsed = (end - start)/1000;
+    name = prompt('Player 1 is victorious.\nWinning time: '+elapsed+' seconds.\nEnter name for scoreboard:');
     gameOver=true;
     return true;
   }
