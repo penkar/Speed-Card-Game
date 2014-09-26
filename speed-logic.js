@@ -1,6 +1,7 @@
 var mainDeck, upperCounter, lowerCounter;
 var lowerDeck, upperDeck, drawLeft, drawRight, playLeft, playRight, lowerHand, upperHand, stats;
-var drawInd = false
+var drawInd = false;
+var gameOver = false;
 //the following are referred to herein as the 'play variables' since they are the ones we will be using to play the game.
 
 //IIFE that makes sure there is a fresh deck when the page loads. This also sets all other play variables to null.
@@ -63,10 +64,10 @@ $(document).on('noMoves', function () {
 })
 
 $(document).on('playMade', function() {
+  showCard();
   updateCounters();
   $('.lowerDeck').text(lowerCounter);
   $('.upperDeck').text(upperCounter);
-  showCard();
   console.log('play made');
 })
 
@@ -239,19 +240,32 @@ var translate = function(card){
 
 var updateHandNames = function(hand,handClass){
   console.log(hand,handClass)
-  var handArray = [];
+  var handArray = ['','','','',''];
   for(var i = 0; i < hand.length; i++){
-    handArray.push(translate(hand[i]));
+    handArray[i]=(translate(hand[i]));
   }
   handArray;
-  for(var j = 0; j < hand.length; j++){
+  for(var j = 0; j < 5; j++){
       var k = j+1
       $('.'+handClass+' div:nth-child( '+k+')').contents().remove();
       $('.'+handClass+' div:nth-child( '+k+')').text(handArray[j]);
   }
 }
+
 var showCard=function(){
   updateHandNames(upperHand,'uhand');
   updateHandNames(lowerHand,'dhand');
   updateHandNames([playLeft[0],playRight[0]],'onField');
+}
+
+var setWin= function(){
+  if (upperHand.length === 0 && upperDeck.length === 0){
+    alert('The Computer has beaten you.');
+    gameOver=true;
+    return true;
+  } else if (lowerHand.length === 0 && lowerDeck.length === 0){
+    alert('You are victorious.');
+    gameOver=true;
+    return true;
+  }
 }

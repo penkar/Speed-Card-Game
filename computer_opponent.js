@@ -46,7 +46,7 @@ var compMove = function(){
 					setTimeout(function(){
 						attemptPlay(upperHand,j,playRight);
 						attemptPlay(upperHand,j,playLeft);
-					if (upperHand.length !== 5 || upperDeck.length===0){
+					if (upperHand.length !== 5 && upperDeck.length!==0){
 						do{drawCard(upperHand); count = upperHand.length;}
 						while(upperHand.count<5 && upperDeck.length===0);
 						compMove();
@@ -60,9 +60,9 @@ var compMove = function(){
 	setWin();
 }
 // Paramaters to trigger a win for the computer.
-var setWin= function(){
-	if (upperHand.length === 0 && upperDeck.length === 0){
-		console.log('The Computer has beaten you.');
-	return true;
-	}
-}
+// var setWin= function(){
+// 	if (upperHand.length === 0 && upperDeck.length === 0){
+// 		console.log('The Computer has beaten you.');
+// 	return true;
+// 	}
+// }
