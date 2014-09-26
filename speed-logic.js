@@ -65,8 +65,7 @@ $(document).on('playMade', function() {
   $('.lowerDeck').text(lowerCounter);
   $('.upperDeck').text(upperCounter);
   showCard()
-  // updateHandNames()
-
+  console.log('hello')
 })
 
 
@@ -173,10 +172,13 @@ var drawCard = function(hand) {
   else {
     console.log("Hand size at maximum.");
   }
+      updateCounters();/////////////////////////////////////////////////////////////////////
+
 };
 
 var drawLeftAndRight = function () {
   if(drawInd){
+    updateCounters();
     if (drawLeft.length > 0) {
       playLeft.splice(0, 1, drawLeft.splice(0, 1)[0]);
       playRight.splice(0, 1, drawRight.splice(0, 1)[0]);
@@ -248,5 +250,5 @@ var updateHandNames = function(hand,handClass){
 var showCard=function(){
   updateHandNames(upperHand,'uhand');
   updateHandNames(lowerHand,'dhand');
-  updateHandNames([playLeft,playRight],'onField');
+  updateHandNames([playLeft[0],playRight[0]],'onField');
 }
