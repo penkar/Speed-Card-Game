@@ -228,6 +228,7 @@ var translate = function(card){
 
 // var a = function(){for(var i = 0; i < 5; i++){$('.uhand div:nth-child(' + i + ')').text('Hello')}}
 // updateHandNames(upperHand,uhand)
+
 var updateHandNames = function(hand,handClass){
   var handArray = [];
   for(var i = 0; i < hand.length; i++){
