@@ -1,37 +1,75 @@
 var compDraw = false;
 var stopCommand = false;
 var difficulty = null;
-$(document).on('noMoves', function(){compMove()});
+
 $(document).on('newGame', function (e, obj){
 	switch (obj) {
-		case '1 Easy':
+		case 'CPU Easy':
+			stopCommand = false;
 			difficulty = 3000;
+			$(document).on('noMoves', function(){compMove()});
+			$(document).on('playMade', function() {
+				console.log('received');
+				stopCommand = true;
+				compMove();
+			})
+			compMove();
 			break;
-		case '2 Beginner':
+		case 'CPU Beginner':
+			stopCommand = false;
 			difficulty = 2500;
+			$(document).on('noMoves', function(){compMove()});
+			$(document).on('playMade', function() {
+				console.log('received');
+				stopCommand = true;
+				compMove();
+			})
+			compMove();
 			break;
-		case '3 Medium':
+		case 'CPU Medium':
+			stopCommand = false;
 			difficulty = 2000;
+			$(document).on('noMoves', function(){compMove()});
+			$(document).on('playMade', function() {
+				console.log('received');
+				stopCommand = true;
+				compMove();
+			})
+			compMove();
 			break;
-		case '4 Hard':
+		case 'CPU Hard':
+			stopCommand = false;
 			difficulty = 1000;
+			$(document).on('noMoves', function(){compMove()});
+			$(document).on('playMade', function() {
+				console.log('received');
+				stopCommand = true;
+				compMove();
+			})
+			compMove();
 			break;
-		case '5 Advanced':
+		case 'CPU Advanced':
+			stopCommand = false;
 			difficulty = 500;
+			$(document).on('noMoves', function(){compMove()});
+			$(document).on('playMade', function() {
+				console.log('received');
+				stopCommand = true;
+				compMove();
+			})
+			compMove();
 			break;
+		case '2 Players':
+			stopCommand = true;
 		default:
-			difficulty = 2000;
+			stopCommand = true;
 			break;
 	}
-	compMove();
+
 
 });
 
-$(document).on('playMade', function() {
-	console.log('received');
-	stopCommand = true;
-	compMove();
-})
+
 // Create for loop that computer opponent will run ,through in order to play game. Each card will be played agains the left and right play card. Afterwards a draw card will trigger.
 var compMove = function(){
 	if(gameOver){return true};
@@ -47,7 +85,7 @@ var compMove = function(){
 					setTimeout(function(){
 						attemptPlay(upperHand,j,playRight);
 						attemptPlay(upperHand,j,playLeft);
-					if (upperHand.length !== 5 && upperDeck.length===0){
+					if (upperHand.length !== 5 && upperDeck.length!==0){
 						do{drawCard(upperHand); count = upperHand.length;}
 						while(upperHand.count<5 && upperDeck.length===0);
 						compMove();
