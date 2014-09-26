@@ -40,7 +40,7 @@
 				<option value="5">CPU Advanced</option>
 				<option value="6">2 Players</option>
 				</select>
-
+				<button type="button" class="mybutton">Enter Score</button>
 				<a href>Leaderboard</a>
 			</div>
 
@@ -82,7 +82,16 @@
 			</span>
 		</span>
 	</span>
+		<script>
+		var scoreListRef = new Firebase('https://intense-heat-6299.firebaseio.com/best_times');
 
+		$(document).on('click', '.mybutton', function(){
+  	 scoreListRef.push({
+	     name: name,
+  	   score: elapsed
+ 		  });
+ 		})
+	 </script>
     <script src="speed-logic.js"></script>
     <script src="computer_opponent.js"></script>
     <script src="js_presenter.js"></script>
