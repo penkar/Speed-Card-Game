@@ -208,7 +208,7 @@ var translate = function(card){
       f = "Jack"
     } else if (f === 'C'){
       f = "Queen"
-    } else if (f === 'B'){
+    } else if (f === 'D'){
       f = "King"
     }
     if(l==='D'){
@@ -220,5 +220,19 @@ var translate = function(card){
     } else if(l === 'S'){
       l = "Spades"
     }
-    console.log( f+' '+l)
+    return (f+' '+l)
+}
+
+// var a = function(){for(var i = 0; i < 5; i++){$('.uhand div:nth-child(' + i + ')').text('Hello')}}
+// updateHandNames(upperHand,uhand)
+var updateHandNames = function(hand,handClass){
+  var handArray = [];
+  for(var i = 0; i < hand.length; i++){
+    handArray.push(translate(hand[i]));
+  }
+  handArray;
+  for(var j = 0; j < hand.length; j++){
+      var k = j+1
+      $('.'+handClass+' div:nth-child( '+k+')').text(handArray[j]);
+  }
 }
