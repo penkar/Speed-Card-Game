@@ -47,7 +47,7 @@ var compMove = function(){
 					setTimeout(function(){
 						attemptPlay(upperHand,j,playRight);
 						attemptPlay(upperHand,j,playLeft);
-					if (upperHand.length !== 5 || upperDeck.length===0){
+					if (upperHand.length !== 5 && upperDeck.length===0){
 						do{drawCard(upperHand); count = upperHand.length;}
 						while(upperHand.count<5 && upperDeck.length===0);
 						compMove();
