@@ -67,6 +67,7 @@ button, select{
 body{
 	margin:0;
 	background-image: url("table.jpg");
+	background-size: 100%;
 }
 
 
