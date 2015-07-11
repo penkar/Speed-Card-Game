@@ -38,8 +38,8 @@ $(document).on('resetGame', function() {
   resetDeck();
   updateCounters();
   shuffleDeck();
-  $('.lowerDeck').text(lowerCounter);
-  $('.upperDeck').text(upperCounter);
+  document.getElementById('lowerDeck').text = lowerCounter;
+  document.getElementById('upperDeck').text = upperCounter;
   console.log('Deck reset, cards shuffled. Ready to deal.');
 })
 
@@ -47,8 +47,8 @@ $(document).on('newGame', function() {
   start = Date.now();
   dealCards();
   updateCounters();
-  $('.lowerDeck').text(lowerCounter);
-  $('.upperDeck').text(upperCounter);
+  document.getElementById('lowerDeck').text = lowerCounter;
+  document.getElementById('upperDeck').text = upperCounter;
   console.log('Go!');
 })
 
@@ -72,8 +72,8 @@ $(document).on('noMoves', function () {
 $(document).on('playMade', function() {
   showCard();
   updateCounters();
-  $('.lowerDeck').text(lowerCounter);
-  $('.upperDeck').text(upperCounter);
+  document.getElementById('lowerDeck').text = lowerCounter;
+  document.getElementById('upperDeck').text = upperCounter;
   console.log('play made');
   setWin();
 })
@@ -84,17 +84,6 @@ var shuffleDeck = function() {
   for (var j, x, i = mainDeck.length; i; j = Math.floor(Math.random() * i), x = mainDeck[--i], mainDeck[i] = mainDeck[j], mainDeck[j] = x);
   return mainDeck;
 };
-
-// function shuffleDeck (array, random) {
-//   var i = mainDeck.length, j, swap;
-//   while (--i) {
-//     j = (random ? random() : Math.random()) * (i + 1) | 0;
-//     swap = mainDeck[i];
-//     mainDeck[i] = mainDeck[j];
-//     mainDeck[j] = swap;
-//   }
-//   return mainDeck;
-// }
 
 //First, it calls the shuffleDeck function to make sure that the cards are not dealt out in sequential order.
 //It then deals out cards by removing them from the mainDeck and placing them into the play variables.
