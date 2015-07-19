@@ -40,7 +40,6 @@ $(document).on('resetGame', function() {
   shuffleDeck();
   document.getElementById('lowerDeck').text = lowerCounter;
   document.getElementById('upperDeck').text = upperCounter;
-  console.log('Deck reset, cards shuffled. Ready to deal.');
 })
 
 $(document).on('newGame', function() {
@@ -49,7 +48,6 @@ $(document).on('newGame', function() {
   updateCounters();
   document.getElementById('lowerDeck').text = lowerCounter;
   document.getElementById('upperDeck').text = upperCounter;
-  console.log('Go!');
 })
 
 $(document).on('playAttempt', function (e, playObject) {
@@ -74,7 +72,6 @@ $(document).on('playMade', function() {
   updateCounters();
   document.getElementById('lowerDeck').text = lowerCounter;
   document.getElementById('upperDeck').text = upperCounter;
-  console.log('play made');
   setWin();
 })
 
@@ -122,11 +119,9 @@ var attemptPlay = function(hand, cardIndex, playCard) {
         makePlay(hand, cardIndex, playCard);
         break;
       default:
-        console.log("Invalid Move");
         break;
     }
-  }
-  else if (attemptCard == 13) {
+  } else if (attemptCard == 13) {
     switch (compareCard) {
       case 1:
         makePlay(hand, cardIndex, playCard);
@@ -135,11 +130,9 @@ var attemptPlay = function(hand, cardIndex, playCard) {
         makePlay(hand, cardIndex, playCard);
         break;
       default:
-        console.log("Invalid Move");
         break;
     }
-  }
-  else {
+  } else {
     switch (compareCard) {
       case (attemptCard - 1):
         makePlay(hand, cardIndex, playCard);
@@ -148,7 +141,6 @@ var attemptPlay = function(hand, cardIndex, playCard) {
         makePlay(hand, cardIndex, playCard);
         break;
       default:
-        console.log("Invalid Move");
         break;
     }
   }
@@ -158,7 +150,6 @@ var attemptPlay = function(hand, cardIndex, playCard) {
 //removes the value from the playCard (center card being played on) and replaces it with the value of the player's card.
 //The card is then removed from the player's hand.
 var makePlay = function(hand, cardIndex, playCard) {
-  console.log(hand,cardIndex,playCard)
   playCard.splice(0, 1, hand[cardIndex]);
   hand.splice(cardIndex, 1);
   $(document).trigger('playMade');
@@ -176,14 +167,10 @@ var drawCard = function(hand) {
       hand.push(upperDeck.splice(0, 1)[0]);
     }
     else {
-      console.log("Invalid input.");
     }
   }
-  else {
-    console.log("Hand size at maximum.");
-  }
   showCard();
-  updateCounters();/////////////////////////////////////////////////////////////////////
+  updateCounters();
 
 };
 
@@ -256,7 +243,6 @@ var translate = function(card){
 // updateHandNames(upperHand,uhand)
 
 var updateHandNames = function(hand,handClass){
-  console.log(hand,handClass)
   var handArray = ['','','','',''];
   for(var i = 0; i < hand.length; i++){
     handArray[i]=(translate(hand[i]));

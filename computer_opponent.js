@@ -9,7 +9,6 @@ $(document).on('newGame', function (e, obj){
 			difficulty = 3000;
 			$(document).on('noMoves', function(){compMove()});
 			$(document).on('playMade', function() {
-				console.log('received');
 				stopCommand = true;
 				compMove();
 			})
@@ -20,7 +19,6 @@ $(document).on('newGame', function (e, obj){
 			difficulty = 2500;
 			$(document).on('noMoves', function(){compMove()});
 			$(document).on('playMade', function() {
-				console.log('received');
 				stopCommand = true;
 				compMove();
 			})
@@ -31,7 +29,6 @@ $(document).on('newGame', function (e, obj){
 			difficulty = 2000;
 			$(document).on('noMoves', function(){compMove()});
 			$(document).on('playMade', function() {
-				console.log('received');
 				stopCommand = true;
 				compMove();
 			})
@@ -42,7 +39,6 @@ $(document).on('newGame', function (e, obj){
 			difficulty = 1000;
 			$(document).on('noMoves', function(){compMove()});
 			$(document).on('playMade', function() {
-				console.log('received');
 				stopCommand = true;
 				compMove();
 			})
@@ -53,7 +49,6 @@ $(document).on('newGame', function (e, obj){
 			difficulty = 500;
 			$(document).on('noMoves', function(){compMove()});
 			$(document).on('playMade', function() {
-				console.log('received');
 				stopCommand = true;
 				compMove();
 			})
@@ -65,8 +60,6 @@ $(document).on('newGame', function (e, obj){
 			stopCommand = true;
 			break;
 	}
-
-
 });
 
 

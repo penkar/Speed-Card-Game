@@ -13,13 +13,11 @@ var resetPlayObject = function() {
 }
 
 $('#reset').on('click', function() {
-  console.log('hello')
   $(document).trigger('resetGame');
   $('.red, .playLeft, .playRight, .lowerDeck, .drawRight').off();
 });
 
 $('.drawRight').on('click', function() {
-  console.log('New play cards.');
   $(document).trigger('noMoves');
 });
 
@@ -32,7 +30,6 @@ $('#start').on('click', function(){
     var card = $(this).attr('class');
     playObject.cardIndex = parseInt(card.slice(-1));
     playObject.playCard = 'playLeft'
-    console.log(playObject);
     $(document).trigger('playAttempt', playObject);
     resetPlayObject();
   });
@@ -43,24 +40,17 @@ $('#start').on('click', function(){
     var card = $(this).attr('class');
     playObject.cardIndex = parseInt(card.slice(-1));
     playObject.playCard = 'playRight'
-    console.log(playObject);
     $(document).trigger('playAttempt', playObject);
     resetPlayObject();
   });
 
   $('.playLeft, .playRight').on('click', function() {
     playObject.playCard = $(this).attr('class').split(' ')[1];
-    console.log(playObject);
     $(document).trigger('playAttempt', playObject);
     resetPlayObject();
   });
 
   $('.lowerDeck').on('click', function() {
-    console.log('Lower Draw');
     $(document).trigger('lowerDraw');
   });
 });
-
-
-
-

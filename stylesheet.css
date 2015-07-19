@@ -6,16 +6,14 @@
 	padding: 5px;
 	margin:5px;
 	background-color: white;
-  line-height: 175px;
-  text-align: center;
-  font-size: 3em;
+	line-height: 175px;
+	text-align: center;
+	font-size: 3em;
 }
 
 span{
 	display: block;
 }
-
-
 
 .red{
 	border-style: solid;
@@ -62,7 +60,7 @@ button, select{
 	width: 100px;
 	padding: 5px;
 	margin:5px;
-	}
+}
 
 body{
 	margin:0;
@@ -72,16 +70,16 @@ body{
 
 
 .center {
-    margin-left: auto;
-    margin-right: auto;
-    background:rgba(255,255,255,0.5);
+	margin-left: auto;
+	margin-right: auto;
+	background:rgba(255,255,255,0.5);
 }
 
 .clearfix:after{
-  content: "";
-  display: block;
-  visibility: hidden;
-  clear:both;
-  line-height: 0;
-  height: 0;
+	content: "";
+	display: block;
+	visibility: hidden;
+	clear:both;
+	line-height: 0;
+	height: 0;
 }
