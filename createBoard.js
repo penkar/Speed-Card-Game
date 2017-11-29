@@ -71,7 +71,17 @@ function createBoard() {
         dce('div', {id:'lowerDeck', className:'red card lowerDeck deck', innerText:'Deck'}, [])
       ]),
     ]),
-  ])
+  ]);
+  
+  window.speedEvents = {
+    newGame: new Event('newGame'),
+    resetGame: new Event('resetGame'),
+    noMoves: new Event('noMoves'),
+    playAttempt: new Event('playAttempt'),
+    playMade: new Event('playMade'),
+    lowerDraw: new Event('lowerDraw'),
+  };
+  
   app.appendChild(appBody);
   var script = dce('script', {src:'speed-logic.js'});
   body.appendChild(script);

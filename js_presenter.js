@@ -12,25 +12,31 @@ var resetPlayObject = function() {
   }
 }
 
-$('#reset').on('click', function() {
-  $(document).trigger('resetGame');
+// $('#reset').on('click', function() {
+// });
+let resetElement = document.getElementById('reset');
+resetElement.addEventListener('click', function() {
+  document.dispatchEvent(window.speedEvents.resetGame);
   $('.red, .playLeft, .playRight, .lowerDeck, .drawRight').off();
-});
+})
+
 
 $('.drawRight').on('click', function() {
-  $(document).trigger('noMoves');
+  window.dispatchEvent(window.speedEvents.noMoves);
 });
 
-$('#start').on('click', function(){
-  $(document).trigger('newGame', $('select option:selected').text());
+let startElement = document.getElementById('start');
+startElement.addEventListener('click', function() {
+  document.dispatchEvent(window.speedEvents.newGame);
 
   $('.red').not('.lowerDeck').on('click', function(e) {
     e.preventDefault();
     playObject.hand = 'lowerHand';
     var card = $(this).attr('class');
     playObject.cardIndex = parseInt(card.slice(-1));
-    playObject.playCard = 'playLeft'
-    $(document).trigger('playAttempt', playObject);
+    playObject.playCard = 'playLeft';
+    window.dispatchEvent(window.speedEvents.playAttempt);
+    // $(document).trigger('playAttempt', playObject);
     resetPlayObject();
   });
 
@@ -39,18 +45,21 @@ $('#start').on('click', function(){
     playObject.hand = 'lowerHand';
     var card = $(this).attr('class');
     playObject.cardIndex = parseInt(card.slice(-1));
-    playObject.playCard = 'playRight'
-    $(document).trigger('playAttempt', playObject);
+    playObject.playCard = 'playRight';
+    window.dispatchEvent(window.speedEvents.playAttempt);
+    // $(document).trigger('playAttempt', playObject);
     resetPlayObject();
   });
 
   $('.playLeft, .playRight').on('click', function() {
     playObject.playCard = $(this).attr('class').split(' ')[1];
-    $(document).trigger('playAttempt', playObject);
+    window.dispatchEvent(window.speedEvents.playAttempt);
+    // $(document).trigger('playAttempt', playObject);
     resetPlayObject();
   });
 
   $('.lowerDeck').on('click', function() {
-    $(document).trigger('lowerDraw');
+    window.dispatchEvent(window.speedEvents.lowerDraw);
+    // $(document).trigger('lowerDraw');
   });
 });

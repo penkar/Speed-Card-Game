@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.firebase.com/js/client/1.0.24/firebase.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <link rel="stylesheet" href="stylesheet.css"></link>
+</head>
+<body>
+	<span class="board center">
+
+		<span class="row clearfix">
+
+			<span class="deck">
+				<div id='upperDeck' class="black card upperDeck deck">Deck</div>
+			</span>
+
+			<span class="hand uhand">
+				<div class="black card u0"></div>
+				<div class="black card u1"></div>
+				<div class="black card u2"></div>
+				<div class="black card u3"></div>
+				<div class="black card u4"></div>
+			</span>
+
+			<div id="p2" class="infobox"><h6></h6></div>
+		</span>
+
+
+		<span class="row clearfix">
+			<div class="infobox">
+				<button type="button" id="start">Start Game</button>
+				<button type="button" id="reset">Reset Game</button>
+
+				<select name="Difficulty">
+				<option value="1">CPU Easy</option>
+				<option value="2">CPU Beginner</option>
+				<option value="3">CPU Medium</option>
+				<option value="4">CPU Hard</option>
+				<option value="5">CPU Advanced</option>
+				<option value="6">2 Players</option>
+				</select>
+				<button type="button" class="mybutton">Enter Score</button>
+				<a href="highscore.html">Leaderboard</a>
+			</div>
+
+			<div class="inplay">
+				<span class="deck">
+					<div class=" card drawLeft deck">Draw</div>
+				</span>
+				<span class="onField">
+					<div class="card playLeft">Play</div>
+					<div class="card playRight">Play</div>
+				</span>
+				<span class="deck">
+					<div class="card drawRight deck">Draw</div>
+				</span>
+			</div>
+
+			<div class="infobox">
+
+			</div>
+
+
+		</span>
+
+
+		<span class="row clearfix">
+
+			<div id="p1" class="infobox"><h6></h6></div>
+
+			<span class="hand dhand">
+				<div class="red card l0"></div>
+				<div class="red card l1"></div>
+				<div class="red card l2"></div>
+				<div class="red card l3"></div>
+				<div class="red card l4"></div>
+			</span>
+
+			<span class="deck">
+				<div id='lowerDeck' class="red card lowerDeck deck">Deck</div>
+			</span>
+		</span>
+	</span>
+	
+	
+		<script>
+		var scoreListRef = new Firebase('https://intense-heat-6299.firebaseio.com/best_times');
+
+		$(document).on('click', '.mybutton', function(){
+  	 scoreListRef.push({
+	     name: name,
+  	   score: elapsed
+ 		  });
+ 		})
+	 </script>
+    <script src="speed-logic.js"></script>
+    <script src="computer_opponent.js"></script>
+    <script src="js_presenter.js"></script>
+    <script src="player_2.js"></script>
+
+	<script>
+		var times = new Firebase("https://intense-heat-6299.firebaseio.com/best_times");
+
+
+
+	</script>
+</body>
+</html>

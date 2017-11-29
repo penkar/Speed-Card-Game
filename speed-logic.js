@@ -1,48 +1,36 @@
 var mainDeck, upperCounter, lowerCounter;
 var lowerDeck, upperDeck, drawLeft, drawRight, playLeft, playRight, lowerHand, upperHand, stats;
-var start, end, elapsed;
-var name;
-var drawInd = false;
-var gameOver = false;
+var start, end, elapsed, name, drawInd = false, gameOver = false;
 //the following are referred to herein as the 'play variables' since they are the ones we will be using to play the game.
 
 //IIFE that makes sure there is a fresh deck when the page loads. This also sets all other play variables to null.
 //Card values being at Ace being 1, and continue to to D on a base-14 scale. A = 10, B = Jack, C = Queen, D = King.
-var resetDeck = function () {
+function resetDeck() {
   mainDeck = [
-  '1 C', '2 C', '3 C', '4 C', '5 C', '6 C', '7 C', '8 C', '9 C', 'A C', 'B C', 'C C', 'D C',
-  '1 D', '2 D', '3 D', '4 D', '5 D', '6 D', '7 D', '8 D', '9 D', 'A D', 'B D', 'C D', 'D D',
-  '1 H', '2 H', '3 H', '4 H', '5 H', '6 H', '7 H', '8 H', '9 H', 'A H', 'B H', 'C H', 'D H',
-  '1 S', '2 S', '3 S', '4 S', '5 S', '6 S', '7 S', '8 S', '9 S', 'A S', 'B S', 'C S', 'D S'
+    '1 C', '2 C', '3 C', '4 C', '5 C', '6 C', '7 C', '8 C', '9 C', 'A C', 'B C', 'C C', 'D C',
+    '1 D', '2 D', '3 D', '4 D', '5 D', '6 D', '7 D', '8 D', '9 D', 'A D', 'B D', 'C D', 'D D',
+    '1 H', '2 H', '3 H', '4 H', '5 H', '6 H', '7 H', '8 H', '9 H', 'A H', 'B H', 'C H', 'D H',
+    '1 S', '2 S', '3 S', '4 S', '5 S', '6 S', '7 S', '8 S', '9 S', 'A S', 'B S', 'C S', 'D S',
   ];
-
-  upperCounter = null;
-  lowerCounter = null;
-
-  lowerDeck = null;
-  uppperDeck = null;
-
-  lowerHand = null;
-  upperHand = null;
-
-  drawLeft = null;
-  drawRight = null;
-
-  playLeft = null;
-  playRight = null;
+  upperCounter = null, lowerCounter = null;
+  lowerDeck = null, uppperDeck = null;
+  lowerHand = null, upperHand = null;
+  drawLeft = null, drawRight = null;
+  playLeft = null, playRight = null;
 };
 
 resetDeck();
 
-$(document).on('resetGame', function() {
+// $(document).on('resetGame', function() {
+document.addEventListener('resetGame', function() {
   resetDeck();
-  updateCounters();
+  updateCounters(true);
   shuffleDeck();
   document.getElementById('lowerDeck').text = lowerCounter;
   document.getElementById('upperDeck').text = upperCounter;
 })
 
-$(document).on('newGame', function() {
+document.addEventListener('newGame', function() {
   start = Date.now();
   dealCards();
   updateCounters();
@@ -50,9 +38,9 @@ $(document).on('newGame', function() {
   document.getElementById('upperDeck').text = upperCounter;
 })
 
-$(document).on('playAttempt', function (e, playObject) {
+document.addEventListener('playAttempt', function(e, playObject) {//})
+// $(document).on('playAttempt', function (e, playObject) {
   attemptPlay(window[playObject.hand], playObject.cardIndex, window[playObject.playCard]);
-
 });
 
 $(document).on('lowerDraw', function () {
@@ -152,7 +140,8 @@ var attemptPlay = function(hand, cardIndex, playCard) {
 var makePlay = function(hand, cardIndex, playCard) {
   playCard.splice(0, 1, hand[cardIndex]);
   hand.splice(cardIndex, 1);
-  $(document).trigger('playMade');
+  window.dispatchEvent(window.speedEvents.playMade);
+  // $(document).trigger('playMade');
 };
 
 //This function checks that the player's hand has fewer than five cards in it. If so, it then checks which hand is attempting
@@ -196,9 +185,12 @@ var drawLeftAndRight = function () {
   };
 };
 
-var updateCounters = function() {
-  upperCounter = upperHand.length + upperDeck.length;
-  lowerCounter = lowerHand.length + lowerDeck.length;
+var updateCounters = function(reset) {
+  if(!reset) {
+    upperCounter = upperHand.length + upperDeck.length, lowerCounter = lowerHand.length + lowerDeck.length;
+  } else {
+    upperCounter = null, lowerCounter = null;
+  }
 };
 
 var stats = function() {

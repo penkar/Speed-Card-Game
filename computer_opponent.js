@@ -1,10 +1,9 @@
-var compDraw = false;
-var stopCommand = false;
-var difficulty = null;
+var compDraw = false, stopCommand = false, difficulty = null;
 
-$(document).on('newGame', function (e, obj){
-	switch (obj) {
-		case 'CPU Easy':
+document.addEventListener('newGame', function() {
+	let diff = document.getElementsByName('Difficulty')[0].value;
+	switch (diff) {
+		case '1':
 			stopCommand = false;
 			difficulty = 3000;
 			$(document).on('noMoves', function(){compMove()});
@@ -14,7 +13,7 @@ $(document).on('newGame', function (e, obj){
 			})
 			compMove();
 			break;
-		case 'CPU Beginner':
+		case '2':
 			stopCommand = false;
 			difficulty = 2500;
 			$(document).on('noMoves', function(){compMove()});
@@ -24,7 +23,7 @@ $(document).on('newGame', function (e, obj){
 			})
 			compMove();
 			break;
-		case 'CPU Medium':
+		case '3':
 			stopCommand = false;
 			difficulty = 2000;
 			$(document).on('noMoves', function(){compMove()});
@@ -34,7 +33,7 @@ $(document).on('newGame', function (e, obj){
 			})
 			compMove();
 			break;
-		case 'CPU Hard':
+		case '4':
 			stopCommand = false;
 			difficulty = 1000;
 			$(document).on('noMoves', function(){compMove()});
@@ -44,7 +43,7 @@ $(document).on('newGame', function (e, obj){
 			})
 			compMove();
 			break;
-		case 'CPU Advanced':
+		case '5':
 			stopCommand = false;
 			difficulty = 500;
 			$(document).on('noMoves', function(){compMove()});
@@ -54,8 +53,7 @@ $(document).on('newGame', function (e, obj){
 			})
 			compMove();
 			break;
-		case '2 Players':
-			stopCommand = true;
+		case '6':
 		default:
 			stopCommand = true;
 			break;
@@ -86,7 +84,7 @@ var compMove = function(){
 				},difficulty*(1+j));
 			})(i);
 		};
-	setWin();
+		setWin();
 	})();
 	setTimeout(drawInd = true,8000);
 	stopCommand = true;
