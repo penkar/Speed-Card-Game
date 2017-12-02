@@ -4,16 +4,7 @@ window.playerTwoObject = {
   playCard: null
 };
 
-var resetPlayerTwoObject = function() {
-  window.playerTwoObject = {
-    hand: 'upperHand',
-    cardIndex: null,
-    playCard: null
-  }
-}
-
 function newGameFunction (e) {
-  console.log(e.which);
   switch (e.which) {
     case 37: //left arrow
       window.playerTwoObject.playCard = 'playLeft';

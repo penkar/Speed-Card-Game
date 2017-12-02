@@ -6,8 +6,8 @@ document.addEventListener('newGame', function() {
 		case '1':
 			stopCommand = false;
 			difficulty = 3000;
-			$(document).on('noMoves', function(){compMove()});
-			$(document).on('playMade', function() {
+			document.addEventListener('noMoves', function(){compMove()});
+			document.addEventListener('playMade', function() {
 				stopCommand = true;
 				compMove();
 			})
@@ -16,8 +16,8 @@ document.addEventListener('newGame', function() {
 		case '2':
 			stopCommand = false;
 			difficulty = 2500;
-			$(document).on('noMoves', function(){compMove()});
-			$(document).on('playMade', function() {
+			document.addEventListener('noMoves', function(){compMove()});
+			document.addEventListener('playMade', function() {
 				stopCommand = true;
 				compMove();
 			})
@@ -26,8 +26,8 @@ document.addEventListener('newGame', function() {
 		case '3':
 			stopCommand = false;
 			difficulty = 2000;
-			$(document).on('noMoves', function(){compMove()});
-			$(document).on('playMade', function() {
+			document.addEventListener('noMoves', function(){compMove()});
+			document.addEventListener('playMade', function() {
 				stopCommand = true;
 				compMove();
 			})
@@ -36,8 +36,8 @@ document.addEventListener('newGame', function() {
 		case '4':
 			stopCommand = false;
 			difficulty = 1000;
-			$(document).on('noMoves', function(){compMove()});
-			$(document).on('playMade', function() {
+			document.addEventListener('noMoves', function(){compMove()});
+			document.addEventListener('playMade', function() {
 				stopCommand = true;
 				compMove();
 			})
@@ -46,8 +46,8 @@ document.addEventListener('newGame', function() {
 		case '5':
 			stopCommand = false;
 			difficulty = 500;
-			$(document).on('noMoves', function(){compMove()});
-			$(document).on('playMade', function() {
+			document.addEventListener('noMoves', function(){compMove()});
+			document.addEventListener('playMade', function() {
 				stopCommand = true;
 				compMove();
 			})

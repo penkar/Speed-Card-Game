@@ -12,54 +12,61 @@ var resetPlayObject = function() {
   }
 }
 
-// $('#reset').on('click', function() {
-// });
 let resetElement = document.getElementById('reset');
 resetElement.addEventListener('click', function() {
   document.dispatchEvent(window.speedEvents.resetGame);
   $('.red, .playLeft, .playRight, .lowerDeck, .drawRight').off();
 })
 
+let drawRightEle = document.getElementsByClassName('drawRight')[0]
+, playLeftEle = document.getElementsByClassName('playLeft')[0]
+, playRightEle = document.getElementsByClassName('playRight')[0];
 
-$('.drawRight').on('click', function() {
-  window.dispatchEvent(window.speedEvents.noMoves);
+drawRightEle.addEventListener('click', function() {
+  document.dispatchEvent(window.speedEvents.noMoves);
 });
 
 let startElement = document.getElementById('start');
+
 startElement.addEventListener('click', function() {
   document.dispatchEvent(window.speedEvents.newGame);
+  let reds = document.getElementsByClassName('red');
 
-  $('.red').not('.lowerDeck').on('click', function(e) {
-    e.preventDefault();
-    playObject.hand = 'lowerHand';
-    var card = $(this).attr('class');
-    playObject.cardIndex = parseInt(card.slice(-1));
-    playObject.playCard = 'playLeft';
-    window.dispatchEvent(window.speedEvents.playAttempt);
-    // $(document).trigger('playAttempt', playObject);
-    resetPlayObject();
-  });
+  for(var i = 0; i < 5; i++) {
+    let card = reds[i];
+    card.addEventListener('click', function(e) {console.log(37);
+      let position = e.target.className.slice(-1);
+      playObject.hand = 'lowerHand';
+      playObject.cardIndex = parseInt(position);
+      playObject.playCard = 'playLeft';
 
-  $('.red').not('.lowerDeck').on('contextmenu', function (e) {
-    e.preventDefault();
-    playObject.hand = 'lowerHand';
-    var card = $(this).attr('class');
-    playObject.cardIndex = parseInt(card.slice(-1));
-    playObject.playCard = 'playRight';
-    window.dispatchEvent(window.speedEvents.playAttempt);
-    // $(document).trigger('playAttempt', playObject);
-    resetPlayObject();
-  });
+      document.dispatchEvent(window.speedEvents.playAttempt);
+      resetPlayObject();
+      e.preventDefault();
+    });
 
-  $('.playLeft, .playRight').on('click', function() {
-    playObject.playCard = $(this).attr('class').split(' ')[1];
-    window.dispatchEvent(window.speedEvents.playAttempt);
-    // $(document).trigger('playAttempt', playObject);
-    resetPlayObject();
-  });
+    card.addEventListener('contextmenu', function(e) {
+      playObject.hand = 'lowerHand';
+      let position = e.target.className.slice(-1);
+      playObject.cardIndex = parseInt(position);
+      playObject.playCard = 'playRight';
 
-  $('.lowerDeck').on('click', function() {
-    window.dispatchEvent(window.speedEvents.lowerDraw);
-    // $(document).trigger('lowerDraw');
-  });
+      document.dispatchEvent(window.speedEvents.playAttempt);
+      resetPlayObject();
+      e.preventDefault();
+    })
+  }
+
+  function playAction(e) {
+    let {target} = e;
+    window.playObject.playCard = target.classList[1];
+  }
+
+  playRightEle.addEventListener('click', playAction);
+  playLeftEle.addEventListener('click', playAction);
+
+  let lowerDeck = document.getElementsByClassName('lowerDeck')[0];
+  lowerDeck.addEventListener('click', function() {
+    document.dispatchEvent(window.speedEvents.lowerDraw);
+  })
 });

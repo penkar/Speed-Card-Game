@@ -21,7 +21,6 @@ function resetDeck() {
 
 resetDeck();
 
-// $(document).on('resetGame', function() {
 document.addEventListener('resetGame', function() {
   resetDeck();
   updateCounters(true);
@@ -38,24 +37,24 @@ document.addEventListener('newGame', function() {
   document.getElementById('upperDeck').text = upperCounter;
 })
 
-document.addEventListener('playAttempt', function(e, playObject) {//})
-// $(document).on('playAttempt', function (e, playObject) {
-  attemptPlay(window[playObject.hand], playObject.cardIndex, window[playObject.playCard]);
+document.addEventListener('playAttempt', function(e, playObject) {
+  let {hand, cardIndex, playCard} = window.playObject;
+  attemptPlay(hand, cardIndex, playCard);
 });
 
-$(document).on('lowerDraw', function () {
+document.addEventListener('lowerDraw', function () {
   drawCard(lowerHand);
   showCard();
 });
 
-$(document).on('noMoves', function () {
+document.addEventListener('noMoves', function () {
   drawInd = true;
   drawLeftAndRight();
   showCard();
   drawInd = false;
 })
 
-$(document).on('playMade', function() {
+document.addEventListener('playMade', function() {
   showCard();
   updateCounters();
   document.getElementById('lowerDeck').text = lowerCounter;
@@ -140,7 +139,7 @@ var attemptPlay = function(hand, cardIndex, playCard) {
 var makePlay = function(hand, cardIndex, playCard) {
   playCard.splice(0, 1, hand[cardIndex]);
   hand.splice(cardIndex, 1);
-  window.dispatchEvent(window.speedEvents.playMade);
+  document.dispatchEvent(window.speedEvents.playMade);
   // $(document).trigger('playMade');
 };
 
@@ -160,7 +159,6 @@ var drawCard = function(hand) {
   }
   showCard();
   updateCounters();
-
 };
 
 var drawLeftAndRight = function () {
@@ -206,29 +204,29 @@ var stats = function() {
 };
 
 var translate = function(card){
-  f = card[0];
-  l = card[2];
-    if(f==='1'){
-      f = 'A'
-    } else if (f === 'A'){
-      f = "10"
-    } else if (f === 'B'){
-      f = "J"
-    } else if (f === 'C'){
-      f = "Q"
-    } else if (f === 'D'){
-      f = "K"
-    }
-    if(l==='D'){
-      l = '&diams;'
-    } else if(l === 'C'){
-      l = '&clubs;'
-    } else if(l === 'H'){
-      l = '&hearts;'
-    } else if(l === 'S'){
-      l = '&spades;'
-    }
-    return (f+' '+l)
+  f = card[0], l = card[2];
+
+  if(f==='1'){
+    f = 'A'
+  } else if (f === 'A'){
+    f = "10"
+  } else if (f === 'B'){
+    f = "J"
+  } else if (f === 'C'){
+    f = "Q"
+  } else if (f === 'D'){
+    f = "K"
+  }
+  if(l==='D'){
+    l = '&diams;'
+  } else if(l === 'C'){
+    l = '&clubs;'
+  } else if(l === 'H'){
+    l = '&hearts;'
+  } else if(l === 'S'){
+    l = '&spades;'
+  }
+  return (f+' '+l)
 }
 
 // var a = function(){for(var i = 0; i < 5; i++){$('.uhand div:nth-child(' + i + ')').text('Hello')}}
