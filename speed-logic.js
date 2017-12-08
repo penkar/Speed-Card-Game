@@ -25,19 +25,19 @@ document.addEventListener('resetGame', function() {
   resetDeck();
   updateCounters(true);
   shuffleDeck();
-  document.getElementById('lowerDeck').text = lowerCounter;
-  document.getElementById('upperDeck').text = upperCounter;
+  document.getElementById('lowerDeck').innerText = lowerCounter;
+  document.getElementById('upperDeck').innerText = upperCounter;
 })
 
 document.addEventListener('newGame', function() {
   start = Date.now();
   dealCards();
   updateCounters();
-  document.getElementById('lowerDeck').text = lowerCounter;
-  document.getElementById('upperDeck').text = upperCounter;
+  document.getElementById('lowerDeck').innerText = lowerCounter;
+  document.getElementById('upperDeck').innerText = upperCounter;
 })
 
-document.addEventListener('playAttempt', function(e, playObject) {
+document.addEventListener('playAttempt', function(e) {
   let {hand, cardIndex, playCard} = window.playObject;
   attemptPlay(hand, cardIndex, playCard);
 });
@@ -57,8 +57,8 @@ document.addEventListener('noMoves', function () {
 document.addEventListener('playMade', function() {
   showCard();
   updateCounters();
-  document.getElementById('lowerDeck').text = lowerCounter;
-  document.getElementById('upperDeck').text = upperCounter;
+  document.getElementById('lowerDeck').innerText = lowerCounter;
+  document.getElementById('upperDeck').innerText = upperCounter;
   setWin();
 })
 
@@ -94,7 +94,7 @@ var dealCards = function() {
 //value higher or one value lower than itself. The makePlay method is called when the move is legal, and that method
 //takes the same arguments given to attemptMove.
 var attemptPlay = function(hand, cardIndex, playCard) {
-  attemptCard = parseInt(hand[cardIndex], 14);
+  attemptCard = parseInt(lowerHand[cardIndex][0], 14);
   compareCard = parseInt(playCard[0], 14);
 
   if (attemptCard == 1) {

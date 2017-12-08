@@ -1,11 +1,11 @@
-var playObject = {
+window.playObject = {
     hand: null,
     cardIndex: null,
     playCard: null
   };
 
 var resetPlayObject = function() {
-  playObject = {
+  window.playObject = {
     hand: null,
     cardIndex: null,
     playCard: null
@@ -36,9 +36,9 @@ startElement.addEventListener('click', function() {
     let card = reds[i];
     card.addEventListener('click', function(e) {console.log(37);
       let position = e.target.className.slice(-1);
-      playObject.hand = 'lowerHand';
+      playObject.hand = lowerHand;
       playObject.cardIndex = parseInt(position);
-      playObject.playCard = 'playLeft';
+      playObject.playCard = playLeft;
 
       document.dispatchEvent(window.speedEvents.playAttempt);
       resetPlayObject();
@@ -46,10 +46,10 @@ startElement.addEventListener('click', function() {
     });
 
     card.addEventListener('contextmenu', function(e) {
-      playObject.hand = 'lowerHand';
+      playObject.hand = lowerHand;
       let position = e.target.className.slice(-1);
       playObject.cardIndex = parseInt(position);
-      playObject.playCard = 'playRight';
+      playObject.playCard = playRight;
 
       document.dispatchEvent(window.speedEvents.playAttempt);
       resetPlayObject();
