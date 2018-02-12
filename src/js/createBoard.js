@@ -106,4 +106,6 @@ function createBoard() {
  //  })
  // </script>
 }
-createBoard()
+
+export default createBoard;
+// createBoard()
